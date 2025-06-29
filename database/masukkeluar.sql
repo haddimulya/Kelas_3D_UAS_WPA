@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 29 Jun 2025 pada 15.18
+-- Waktu pembuatan: 29 Jun 2025 pada 07.37
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -32,25 +32,24 @@ CREATE TABLE `barang` (
   `nama_barang` varchar(100) NOT NULL,
   `deskripsi` text DEFAULT NULL,
   `stok` int(11) DEFAULT 0,
-  `foto` varchar(255) DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL
+  `foto` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `barang`
 --
 
-INSERT INTO `barang` (`id`, `nama_barang`, `deskripsi`, `stok`, `foto`, `updated_at`) VALUES
-(1, 'Mouse Wireless Logitech', 'Mouse tanpa kabel, responsif dan ringan.', 25, 'mouse.jpg', '2025-06-29 12:35:49'),
-(2, 'Keyboard Mechanical', 'Keyboard gaming dengan switch biru.', 15, 'keyboard.jpg', NULL),
-(3, 'Monitor 24 Inch', 'Full HD LED Monitor untuk kerja dan game.', 8, 'monitor.jpg', NULL),
-(4, 'Flashdisk 64GB', 'Penyimpanan USB 3.0 kecepatan tinggi.', 40, 'flashdisk.jpg', NULL),
-(5, 'Headset Gaming RGB', 'Headset suara jernih dengan lampu RGB.', 12, 'headset.jpg', NULL),
-(6, 'Kabel HDMI 2 Meter', 'Kabel HDMI kualitas tinggi, cocok untuk TV dan laptop.', 9, 'hdmi.jpg', NULL),
-(7, 'Powerbank 10000mAh', 'Powerbank cepat isi ulang dengan dual output.', 18, 'powerbank.jpg', NULL),
-(8, 'Laptop Stand Aluminium', 'Penopang laptop ergonomis dan kokoh.', 5, 'stand.jpg', NULL),
-(9, 'Webcam Full HD', 'Webcam 1080p untuk meeting online.', 7, 'webcam.jpg', NULL),
-(10, 'Router WiFi TP-Link', 'Router nirkabel dengan jangkauan luas.', 20, 'router.jpg', NULL);
+INSERT INTO `barang` (`id`, `nama_barang`, `deskripsi`, `stok`, `foto`) VALUES
+(1, 'Mouse Wireless Logitech', 'Mouse tanpa kabel, responsif dan ringan.', 25, 'mouse.jpg'),
+(2, 'Keyboard Mechanical', 'Keyboard gaming dengan switch biru.', 15, 'keyboard.jpg'),
+(3, 'Monitor 24 Inch', 'Full HD LED Monitor untuk kerja dan game.', 8, 'monitor.jpg'),
+(4, 'Flashdisk 64GB', 'Penyimpanan USB 3.0 kecepatan tinggi.', 40, 'flashdisk.jpg'),
+(5, 'Headset Gaming RGB', 'Headset suara jernih dengan lampu RGB.', 12, 'headset.jpg'),
+(6, 'Kabel HDMI 2 Meter', 'Kabel HDMI kualitas tinggi, cocok untuk TV dan laptop.', 9, 'hdmi.jpg'),
+(7, 'Powerbank 10000mAh', 'Powerbank cepat isi ulang dengan dual output.', 18, 'powerbank.jpg'),
+(8, 'Laptop Stand Aluminium', 'Penopang laptop ergonomis dan kokoh.', 5, 'stand.jpg'),
+(9, 'Webcam Full HD', 'Webcam 1080p untuk meeting online.', 7, 'webcam.jpg'),
+(10, 'Router WiFi TP-Link', 'Router nirkabel dengan jangkauan luas.', 20, 'router.jpg');
 
 -- --------------------------------------------------------
 
@@ -65,13 +64,6 @@ CREATE TABLE `transaksi` (
   `jumlah` int(11) NOT NULL,
   `tanggal` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data untuk tabel `transaksi`
---
-
-INSERT INTO `transaksi` (`id`, `id_barang`, `jenis`, `jumlah`, `tanggal`) VALUES
-(8, 1, 'keluar', 5, '2025-06-29');
 
 -- --------------------------------------------------------
 
@@ -130,7 +122,7 @@ ALTER TABLE `barang`
 -- AUTO_INCREMENT untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
