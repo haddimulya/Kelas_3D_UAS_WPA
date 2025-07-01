@@ -13,8 +13,8 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
     $routes->get('/', 'Dashboard::index');
     $routes->get('/dashboard', 'Dashboard::index');
     $routes->get('barang', 'Barang::index');
-    $routes->get('barang/tambah', 'Barang::tambah');
-    $routes->post('barang/tambah', 'Barang::simpan');
+    $routes->get('barang/tambah', 'Barang::create');
+    $routes->post('barang/tambah', 'Barang::store');
     $routes->get('barang/edit/(:num)', 'Barang::edit/$1');
     $routes->post('barang/update/(:num)', 'Barang::update/$1');
     $routes->get('barang/hapus/(:num)', 'Barang::hapus/$1');
