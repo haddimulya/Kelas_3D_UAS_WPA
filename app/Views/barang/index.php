@@ -9,6 +9,8 @@
 }
 </style>
 
+<h4 class="mb-4">Data Barang</h4>
+
 <!-- ✅ Flash message -->
 <?php if (session()->getFlashdata('success')): ?>
     <div class="alert alert-success alert-dismissible fade show" role="alert">

@@ -34,7 +34,7 @@ class Barang extends BaseController
             $builder = $builder->where('stok >=', 10);
         }
 
-        $data['barang']  = $builder->paginate(5);
+        $data['barang']  = $builder->orderBy('id', 'DESC')->paginate(5);
         $data['pager']   = $builder->pager; // ✅ fix
         $data['keyword'] = $keyword;
         $data['filter']  = $filterStok;
@@ -51,12 +51,13 @@ class Barang extends BaseController
     // ✅ Simpan data baru
     public function store()
     {
-        // Validasi sederhana
+        $validation = \Config\Services::validation();
+
         if (!$this->validate([
             'nama_barang' => 'required',
             'stok'        => 'required|integer',
         ])) {
-            return redirect()->back()->withInput()->with('error', 'Validasi gagal.');
+            dd($validation->getErrors()); // tampilkan pesan validasi
         }
 
         $foto = $this->request->getFile('foto');
@@ -64,15 +65,24 @@ class Barang extends BaseController
 
         if ($foto && $foto->isValid() && !$foto->hasMoved()) {
             $namaFoto = $foto->getRandomName();
-            $foto->move('uploads/', $namaFoto);
+
+            try {
+                $foto->move('uploads/', $namaFoto);
+            } catch (\Throwable $e) {
+                dd('Gagal upload: ' . $e->getMessage());
+            }
         }
 
-        $this->barang->save([
-            'nama_barang' => $this->request->getPost('nama_barang'),
-            'deskripsi'   => $this->request->getPost('deskripsi'),
-            'stok'        => $this->request->getPost('stok'),
-            'foto'        => $namaFoto
-        ]);
+        try {
+            $this->barang->save([
+                'nama_barang' => $this->request->getPost('nama_barang'),
+                'deskripsi'   => $this->request->getPost('deskripsi'),
+                'stok'        => $this->request->getPost('stok'),
+                'foto'        => $namaFoto
+            ]);
+        } catch (\Throwable $e) {
+            dd('Gagal simpan ke database: ' . $e->getMessage());
+        }
 
         return redirect()->to(base_url('barang'))->with('success', 'Barang berhasil ditambahkan.');
     }

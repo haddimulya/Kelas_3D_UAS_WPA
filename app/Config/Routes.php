@@ -17,7 +17,7 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
     $routes->post('barang/tambah', 'Barang::store');
     $routes->get('barang/edit/(:num)', 'Barang::edit/$1');
     $routes->post('barang/update/(:num)', 'Barang::update/$1');
-    $routes->get('barang/hapus/(:num)', 'Barang::hapus/$1');
+    $routes->get('barang/hapus/(:num)', 'Barang::delete/$1');
     $routes->get('/transaksi/masuk', 'Transaksi::masuk');
     $routes->post('/transaksi/masuk', 'Transaksi::storeMasuk');
     $routes->get('/transaksi/keluar', 'Transaksi::keluar');

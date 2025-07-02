@@ -1,5 +1,19 @@
 <?= view('layouts/header') ?>
 
+<?php if (session()->getFlashdata('error')): ?>
+    <div class="alert alert-danger">
+        <?= session()->getFlashdata('error') ?>
+    </div>
+<?php endif; ?>
+
+<?php if (isset($validation)): ?>
+    <div class="alert alert-danger">
+        <?= $validation->listErrors() ?>
+    </div>
+<?php endif; ?>
+
+<h4 class="mb-4">Tambah Barang</h4>
+
 <form method="post" action="<?= base_url('barang/tambah') ?>" enctype="multipart/form-data">
     <div class="mb-3">
         <label>Nama Barang</label>
